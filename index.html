@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Latest compiled and minified CSS -->
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="assets/css/style.css">
+
+    <script src="http://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+
+    <title>Coin Collector</title>
+
+</head>
+
+<body>
+        <style>
+
+        body {
+            background-image: url(assets/images/background-body.jpg);
+        }
+
+        .header {
+            background-color: orange;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            
+        }
+        
+        #winPoint{
+            background-color: rgb(4, 136, 15);
+            color: white;
+            width: max-content;
+            height: 150px;
+            margin: 20px 0 20px 60px;
+        }
+
+        .instruction {
+            clear: both;
+            color: green;
+            background: rgb(252, 177, 78);
+            padding: 20px;
+        }
+ 
+
+        .vs { 
+            color:white;
+            background: rgb(89, 240, 237);
+            width: max-content;
+            height: 150px;
+            margin:20px 0 0 20px;
+        }
+        .coins {
+            clear: both;
+        }
+
+        #blueCoin {
+            width:100px;
+            height:100px;
+            background-image: url(assets/images/blueCoin.png);
+        }
+
+        #yellowCoin {
+            width:100px;
+            height:100px;
+            background-image: url(assets/images/yellowCoin.jpeg)
+        }
+
+
+        #redCoin {
+            width:100px;
+            height:100px;
+            background-image: url(assets/images/redCoin.jpeg);
+        }
+
+        #pinkCoin {
+            width:100px;
+            height:100px;
+            background-image: url(assets/images/purpleCoin.png);
+        }
+
+        </style>
+
+        <!-- ROW 1 -->
+         <div class="row">
+            <header class="col-xs-6">
+                <h1 class="header">Coin Collector</h1>
+            </header>
+
+        </div>
+
+        <!-- ROW2-->
+        <div class="row">
+            <div class="col-xs-6 instruction">
+                <p>
+                    You will be given a random number at the start of the game.
+                    There are five coins below. By clicking on a coin you will add a specific amount of points to your total score.
+                </p><br>
+                <p>You win the game by matching your total score to random number, you lose the game if your score goes above the random number. 
+
+                </p><br>
+                    
+                <p>The value of each coin is hidden from you until you click on it. Each time when the game starts, the game will change the values of each coin.
+                </p>
+            </div>
+        </div>
+
+    <!-- ROW3 -->
+    <div id="winPoint" class="container col-xs-8 row">
+        
+        <h2>Win Point: <span id="value"></span></h2>
+
+    </div>
+
+            <div class="vs col-xs-4">
+                <h3 id="status"></h3>
+                <h3 id="wins">Wins:</h3>
+                <h3 id="losses">Losses:</h3>
+            </div>
+
+    <div class="coins container">
+
+        <button type="button" class="btn" id="blueCoin"></button>
+        <button type="button" class="btn" id="yellowCoin"></button>
+        <button type="button" class="btn" id="redCoin"></button>
+        <button type="button" class="btn" id="pinkCoin"></button>
+    </div>
+
+    <div class="container"><h2>Your total score:</h2>
+        
+        <div class="yourScore"><h2>0</h2></div>
+
+    
+
+<script type="text/javascript">
+
+
+$(document).ready(function () {
+
+    //Starting point:
+    var wins = 0;
+    var losses = 0;
+    var yourScore = 0;
+
+    //Sets randomNumber to guess between 19 and 120
+    var randomNumber = Math.floor(Math.random() * 101) + 19;
+
+    console.log(randomNumber);
+
+    $("#value").html(randomNumber);
+
+
+    function reset () {
+
+        randomNumber = Math.floor(Math.random() * 101) + 19;
+        $("#value").html(randomNumber);
+
+        blueCoin12 = Math.floor(Math.random() * 12) + 1;
+        yellowCoin12 = Math.floor(Math.random() * 12) + 1;
+        redCoin12 = Math.floor(Math.random() * 12) + 1;
+        pinkCoin12 = Math.floor(Math.random() * 12) + 1;
+        yourScore = 0;
+    };
+
+
+    var blueCoin12 = Math.floor(Math.random() * 12) + 1;
+
+
+        $("#blueCoin").on('click', function () {
+
+        yourScore = yourScore + parseInt(blueCoin12);
+
+        $(".yourScore").html(yourScore);
+
+
+
+
+        if (yourScore === randomNumber) {
+
+            $("#status").html("You WON!");
+            wins ++;
+
+            $("#wins").text("Wins: " + wins);
+
+            reset();
+        
+        } else if ( yourScore > randomNumber ) {
+
+            $("#status").html("You LOST!");
+            losses ++;
+
+            $("#losses").text("Losses: " + losses);
+
+            reset();
+        };
+
+    });
+
+
+    var yellowCoin12 = Math.floor(Math.random() * 12) + 1;
+
+    $("#yellowCoin").on('click', function () {
+
+        yourScore = yourScore + parseInt(yellowCoin12);
+
+        $(".yourScore").html(yourScore);
+
+
+
+        if (yourScore === randomNumber) {
+
+            $("#status").html("You WON!");
+            wins++;
+            $("#wins").text("Wins: " + wins);
+            reset();
+
+        } else if (yourScore > randomNumber) {
+
+            $("#status").html("You LOST!");
+            losses++;
+
+            $("#losses").text("Losses: " + losses);
+            reset();
+        }
+
+        });
+
+
+
+    var redCoin12 = Math.floor(Math.random() * 12) + 1;
+
+        $('#redCoin').on('click', function () {
+
+        yourScore = yourScore + parseInt(redCoin12);
+
+        $('.yourScore').html(yourScore);
+
+
+
+        if (yourScore === randomNumber) {
+            $('#status').html('You won!');
+            wins++;
+
+            $("#wins").text("Wins: " + wins);
+            reset();
+
+
+        } else if (yourScore > randomNumber) {
+            $('#status').html('You lost!')
+            losses++;
+
+            $("#losses").text("Losses: " + losses);
+            reset();
+
+        }
+    });
+
+
+
+    var pinkCoin12 = Math.floor(Math.random() * 12) + 1;
+
+        $('#pinkCoin').on('click', function () {
+
+        yourScore = yourScore + parseInt(pinkCoin12);
+
+        $('.yourScore').html(yourScore);
+
+
+
+
+        if (yourScore === randomNumber) {
+            $('#status').html('You won!');
+            wins++;
+            
+            $("#wins").text("Wins: " + wins);
+            reset();
+
+
+        } else if (counter > randomNumber) {
+            $('#status').html('You lost!')
+            losses++;
+
+            $("#losses").text("Losses: " + losses);
+            reset();
+
+        }
+    });
+
+});
+
+</script>
+</body>
+</html>
