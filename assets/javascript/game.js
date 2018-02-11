@@ -25,6 +25,9 @@ $(document).ready(function () {
         pinkCoin12 = Math.floor(Math.random() * 12) + 1;
         yourScore = 0;
 
+        setTimeout(() => { $('#status').html("Status");
+            
+        }, 2 * 1000);
 
     };
 
@@ -36,7 +39,7 @@ $(document).ready(function () {
 
         yourScore = yourScore + parseInt(blueCoin12);
 
-        $(".yourScore").html(yourScore);
+        $(".yourScore").html("<h2>" + yourScore + "</h2>");
 
 
 
@@ -70,7 +73,7 @@ $(document).ready(function () {
 
         yourScore = yourScore + parseInt(yellowCoin12);
 
-        $(".yourScore").html(yourScore);
+        $(".yourScore").html("<h2>" + yourScore + "</h2>");
 
 
 
@@ -100,7 +103,7 @@ $(document).ready(function () {
 
         yourScore = yourScore + parseInt(redCoin12);
 
-        $('.yourScore').html(yourScore);
+        $(".yourScore").html("<h2>" + yourScore + "</h2>");
 
 
 
@@ -130,7 +133,7 @@ $(document).ready(function () {
 
         yourScore = yourScore + parseInt(pinkCoin12);
 
-        $('.yourScore').html(yourScore);
+        $(".yourScore").html("<h2>" + yourScore + "</h2>");
 
 
 
